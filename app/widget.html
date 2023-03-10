@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbedeAppSDK.min.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="app.js">
+  </head>
+  <body>
+    <!--<h1>PRUEBA DE BOTON</h1>
+    <div>Name: <input type="text" name="name" id="name"></div>
+    <br/>-->
+    <h1>RELOJ ZOHO</h1>
+    <!--<button method="post" onclick="alert('Se actualizo correctamente');updateFunction()">Submit</button>-->
+    <p id="demo"></p>
+    <div class="reloj">
+      <p class="tiempo"></p>
+  </div>
+  <script src="app.js"></script>
+    <script>
+      let id;
+      const inputName = document.getElementById("name");
+      ZOHO.embeddedApp.on("PageLoad",function(data){
+      id= data.EntityId[0];
+      ZOHO.CRM.API.getRecord({
+        Entity : "Leads",
+        RecordID : id,
+      }).then(function(data){
+        const lastName = data.data[0].Last_Name
+        console.log(lastName)
+        const input = document.querySelector("#name")
+        console.dir(input)
+        input.value = lastName
+      });
+    });
+    ZOHO.embeddedApp.init();
+
+    function buttonFunction(){
+      let name = inputName.value;
+    }
+    var recordData = {
+      Last_Name: name,
+    };
+
+    function updateFunction(){
+      const config = {
+        Entity: "Leads",
+        APIData:{
+          id:id,
+          Last_Name: inputName.value,
+        }
+      }
+        
+   
+      console.log(config)
+
+      ZOHO.CRM.API.updateRecord(config).then(function (data){
+        console.log(data)
+
+        
+      }).finally(()=>{
+        ZOHO.CRM.UI.Popup.close().then(function (data){
+          console.log(data)
+        })
+        ZOHO.CRM.UI.Popup.close().then(function (data){
+          console.log(data)
+        })
+      })
+    }
+    </script>
+  </body>
+</html> 
