@@ -71,11 +71,16 @@
     </script>
     <div class="opciones" style="margin-left: 25px;margin-top: 10px;">
     
+      <div class="col-md-3" style="width: 400px;scale: auto;">
+        <label>Nombre</label>
+        <input type="text" class="name form-control" id="name" ><br>
+        </div>
+
     <div class="col-md-1" style="width: 90px;scale: auto;">
     <label for="numero1">Numero 1</label>
     <input type="text" class="form-control" id="numero1" onchange="sumar();"><br>
     </div>
-
+    
     <div class="col-md-1" style="width: 90px;scale: auto;"> 
     <label for="numero2">Numero 2</label>
     <input type="text" class="form-control" id="numero2" onchange="sumar();"><br>
@@ -83,6 +88,9 @@
     <div class="col-md-1" style="width: 90px;scale: auto;">
     <label for="resultado">Resultado</label>
     <input type="text" class="form-control" id="resultado">
+    <button onclick="updateFunction()" style="margin-top: 20px;">submit
+
+    </button>
     </div>
     <script>
         // si la respuesta que se espera es sumar
