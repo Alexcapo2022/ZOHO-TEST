@@ -24,7 +24,7 @@
       ZOHO.embeddedApp.on("PageLoad",function(data){
       id= data.EntityId[0];
       ZOHO.CRM.API.getRecord({
-        Entity : "Leads",
+        Entity : "TESTING",
         RecordID : id,
       }).then(function(data){
         const lastName = data.data[0].Last_Name
@@ -45,7 +45,7 @@
 
     function updateFunction(){
       const config = {
-        Entity: "Leads",
+        Entity: "TESTING",
         APIData:{
           id:id,
           Last_Name: inputName.value,
@@ -73,7 +73,7 @@
     
       <div class="col-md-3" style="width: 400px;scale: auto;">
         <label>Nombre</label>
-        <input type="text" class="name form-control" id="name" ><br>
+        <input type="text" class="name" id="name" ><br>
         </div>
 
     <div class="col-md-1" style="width: 90px;scale: auto;">
