@@ -18,57 +18,6 @@
       <p class="tiempo"></p>
   </div>
   <script src="app.js"></script>
-    <script>
-      let id;
-      const inputName = document.getElementById("name");
-      ZOHO.embeddedApp.on("PageLoad",function(data){
-      id= data.EntityId[0];
-      ZOHO.CRM.API.getRecord({
-        Entity : "TESTING",
-        RecordID : id,
-      }).then(function(data){
-        const lastName = data.data[0].Last_Name
-        console.log(lastName)
-        const input = document.querySelector("#name")
-        console.dir(input)
-        input.value = lastName
-      });
-    });
-    ZOHO.embeddedApp.init();
-
-    function buttonFunction(){
-      let name = inputName.value;
-    }
-    var recordData = {
-      Last_Name: name,
-    };
-
-    function updateFunction(){
-      const config = {
-        Entity: "TESTING",
-        APIData:{
-          id:id,
-          Last_Name: inputName.value,
-        }
-      }
-        
-   
-      console.log(config)
-
-      ZOHO.CRM.API.updateRecord(config).then(function (data){
-        console.log(data)
-
-        
-      }).finally(()=>{
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-      })
-    }
-    </script>
     <div class="opciones" style="margin-left: 25px;margin-top: 10px;">
     
       <div class="col-md-3" style="width: 400px;scale: auto;">
@@ -89,6 +38,57 @@
     <label for="resultado">Resultado</label>
     <input type="text" class="form-control" id="resultado">
     <button onclick="updateFunction()" style="margin-top: 20px;">submit
+      <script>
+        let id;
+        const inputName = document.getElementById("name");
+        ZOHO.embeddedApp.on("PageLoad",function(data){
+        id= data.EntityId[0];
+        ZOHO.CRM.API.getRecord({
+          Entity : "TESTING",
+          RecordID : id,
+        }).then(function(data){
+          const lastName = data.data[0].Nombre_de_TESTING
+          console.log(lastName)
+          const input = document.querySelector("#name")
+          console.dir(input)
+          input.value = lastName
+        });
+      });
+      ZOHO.embeddedApp.init();
+  
+      function buttonFunction(){
+        let name = inputName.value;
+      }
+      var recordData = {
+        Nombre_de_TESTING: name,
+      };
+  
+      function updateFunction(){
+        const config = {
+          Entity: "TESTING",
+          APIData:{
+            id:id,
+            Nombre_de_TESTING: inputName.value,
+          }
+        }
+          
+     
+        console.log(config)
+  
+        ZOHO.CRM.API.updateRecord(config).then(function (data){
+          console.log(data)
+  
+          
+        }).finally(()=>{
+          ZOHO.CRM.UI.Popup.close().then(function (data){
+            console.log(data)
+          })
+          ZOHO.CRM.UI.Popup.close().then(function (data){
+            console.log(data)
+          })
+        })
+      }
+      </script>
 
     </button>
     </div>
