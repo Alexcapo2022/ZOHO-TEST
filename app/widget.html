@@ -1,113 +1,36 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbedeAppSDK.min.js"></script>
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="app.js">
-  </head>
-  <body>
-    <!--<h1>PRUEBA DE BOTON</h1>
-    <div>Name: <input type="text" name="name" id="name"></div>
-    <br/>-->
-    <h1>RELOJ ZOHO</h1>
-    <!--<button method="post" onclick="alert('Se actualizo correctamente');updateFunction()">Submit</button>-->
-    <p id="demo"></p>
-    <div class="reloj">
-      <p class="tiempo"></p>
-  </div>
-  <script src="app.js"></script>
-    <script type="text/javascript">
-      let id;
-      const inputName = document.getElementById("Nombre");
-      ZOHO.embeddedApp.on("PageLoad",function(data){
-      id = data.EntityId[0];
-      console.log(id);
-      ZOHO.CRM.API.getRecord({
-        Entity : "TESTING",
-        RecordID : id,
-      }).then(function(data){
-        console.log(data)
-        const lastName = data.data[0].Nombre
-        console.log(lastName)
-        const input = document.querySelector("#Nombre")
-        console.dir(input)
-        input.value = lastName
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src = "https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+  <script>
+    ZOHO.embeddedApp.on("PageLoad", function(data){
+      var id = data.EntityId, module = data.Entity;
+      
+      ZOHO.CRM.API.getRecord({Entity: module, RecordID: id})
+      .then(function(data){
+        console.log(data);
       });
     });
+    function updateRecord(){
+      
+      ZOHO.CRM.API.updateRecord({Entity: module, APIData: zoho})
+      .then(function(data){
+        console.log(data);
+      }); 
+    } ;
     ZOHO.embeddedApp.init();
-
-    function buttonFunction(){
-      let name = inputName.value;
-    }
-    var recordData = {
-      Last_Name: name,
-    };
-
-    function updateFunction(){
-      const config = {
-        Entity: "TESTING",
-        APIData:{
-          id: 3922751000394719526,
-          Last_Name: "Duro",
-        }        
-      }   
-      console.log(config)
-      console.log(id)
-      console.log
-
-      ZOHO.CRM.API.updateRecord(config).then(function (data){
-        console.log(data)
-
-        
-      }).finally(()=>{
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-      })
-    }
-    </script>
-    
-    <div class="opciones" style="margin-left: 25px;margin-top: 10px;">
-    
-      <div class="col-md-3" style="width: 400px;scale: auto;">
-        <label>Nombre</label>
-        <input type="text" class="name form-control" id="name" ><br>
-        </div>
-
+  </script>
+</head>
+<body>
+  <div>
     <div class="col-md-1" style="width: 90px;scale: auto;">
-    <label for="numero1">Numero 1</label>
-    <input type="text" class="form-control" id="numero1" onchange="sumar();"><br>
-    </div>
-    
-    <div class="col-md-1" style="width: 90px;scale: auto;"> 
-    <label for="numero2">Numero 2</label>
-    <input type="text" class="form-control" id="numero2" onchange="sumar();"><br>
-    </div>
-    <div class="col-md-1" style="width: 90px;scale: auto;">
-    <label for="resultado">Resultado</label>
-    <input type="text" class="form-control" id="resultado">
-    <button onclick="updateFunction()" style="margin-top: 20px;">submit
+      <label for="resultado">Resultado</label>
+      <input type="text" class="form-control" id="resultado">
 
-    </button>
-    </div>
-    <script>
-        // si la respuesta que se espera es sumar
-        function sumar(){
-            var numero1 = document.getElementById('numero1').value;
-            var numero2 = document.getElementById('numero2').value;
-    
-            if(numero1!=='' && numero2!==''){
-                var suma = parseInt(numero1)+parseInt(numero2);
-                document.getElementById('resultado').value = suma;
-            }
-        }
-    </script>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
-</html> 
+      <button onclick="updateRecord()" style="margin-top: 20px;">
+        Funciona
+      </button>
+  </div>
+</body>
+</html>
