@@ -28,7 +28,8 @@
         Entity : "TESTING",
         RecordID : id,
       }).then(function(data){
-        const lastName = data.data[0].Last_Name
+        console.log(data)
+        const lastName = data.data[0].Nombre
         console.log(lastName)
         const input = document.querySelector("#Nombre")
         console.dir(input)
