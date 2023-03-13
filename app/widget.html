@@ -18,7 +18,7 @@
       <p class="tiempo"></p>
   </div>
   <script src="app.js"></script>
-    <script>
+    <script type="text/javascript">
       let id;
       const inputName = document.getElementById("Nombre");
       ZOHO.embeddedApp.on("PageLoad",function(data){
@@ -55,7 +55,7 @@
       }   
       console.log(config)
       console.log(id)
-      console.log(data)
+      console.log
 
       ZOHO.CRM.API.updateRecord(config).then(function (data){
         console.log(data)
@@ -71,6 +71,7 @@
       })
     }
     </script>
+    
     <div class="opciones" style="margin-left: 25px;margin-top: 10px;">
     
       <div class="col-md-3" style="width: 400px;scale: auto;">
