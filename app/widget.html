@@ -13,9 +13,59 @@
         console.log(data);
       });
       console.log("XD?")
-    });   
+    });
 
+    let id;
+      const inputName = document.getElementById("Nombre");
+      ZOHO.embeddedApp.on("PageLoad",function(data){
+      id = data.EntityId[0];
+      console.log(id);
+      ZOHO.CRM.API.getRecord({
+        Entity : "TESTING",
+        RecordID : id,
+      }).then(function(data){
+        console.log(data)
+        const lastName = data.data[0].Nombre
+        console.log(lastName)
+        const input = document.querySelector("#Nombre")
+        console.dir(input)
+        input.value = lastName
+      });
+    });
     ZOHO.embeddedApp.init();
+
+    function buttonFunction(){
+      let name = inputName.value;
+    }
+    var recordData = {
+      Last_Name: name,
+    };
+
+    function updateFunction(){
+      const config = {
+        Entity: "TESTING",
+        APIData:{
+          id: 3922751000394719526,
+          Last_Name: "Duro",
+        }        
+      }   
+      console.log(config)
+      console.log(id)
+      console.log
+
+      ZOHO.CRM.API.updateRecord(config).then(function (data){
+        console.log(data)
+
+        
+      }).finally(()=>{
+        ZOHO.CRM.UI.Popup.close().then(function (data){
+          console.log(data)
+        })
+        ZOHO.CRM.UI.Popup.close().then(function (data){
+          console.log(data)
+        })
+      })
+    }
   </script>
 </head>
 <body>
@@ -24,7 +74,7 @@
       <label>Nombre</label>
       <input type="text" class="name form-control" id="name" ><br>
       </div>
-    <button onclick="updateRecord()">
+    <button onclick="updateFunction()">
       Actualizar registro
     </button>
   </div>
