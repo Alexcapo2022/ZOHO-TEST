@@ -2,35 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src = "https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
   <script>
-    ZOHO.embeddedApp.on("PageLoad", function(data){
-      var id = data.EntityId, module = data.Entity;
+    // Función para actualizar un registro en Zoho CRM
+    function updateRecord() {
+      // Obtener el ID del registro actual
+      ZOHO.embeddedApp.on("PageLoad", function(data){
+        var recordId = data.EntityId;
+        var entityName = data.Entity;
       
-      ZOHO.CRM.API.getRecord({Entity: module, RecordID: id})
-      .then(function(data){
-        console.log(data);
+        // Actualizar el registro mediante la API de Zoho CRM
+        ZOHO.CRM.API.updateRecord({
+          Entity: entityName,
+          RecordID: recordId,
+          APIData: {
+            "Campo1": "Nuevo valor1",
+            "Campo2": "Nuevo valor2",
+            // ...
+          }
+        })
+        .then(function(response) {
+          console.log("Registro actualizado con éxito:", response);
+        })
+        .catch(function(error) {
+          console.error("Error al actualizar el registro:", error);
+        });
       });
-    });
-    function updateRecord(){
-      
-      ZOHO.CRM.API.updateRecord({Entity: module, APIData: zoho})
-      .then(function(data){
-        console.log(data);
-      }); 
-    } ;
-    ZOHO.embeddedApp.init();
+    }
   </script>
 </head>
 <body>
   <div>
-    <div class="col-md-1" style="width: 90px;scale: auto;">
-      <label for="resultado">Resultado</label>
-      <input type="text" class="form-control" id="resultado">
-
-      <button onclick="updateRecord()" style="margin-top: 20px;">
-        Funciona
-      </button>
+    <div class="col-md-3" style="width: 400px;scale: auto;">
+      <label>Nombre</label>
+      <input type="text" class="name form-control" id="name" ><br>
+      </div>
+    <button onclick="updateRecord()">
+      Actualizar registro
+    </button>
   </div>
 </body>
 </html>
