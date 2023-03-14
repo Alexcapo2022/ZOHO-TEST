@@ -4,31 +4,18 @@
   <meta charset="UTF-8">
   <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
   <script>
-    // Función para actualizar un registro en Zoho CRM
-    function updateRecord() {
-      // Obtener el ID del registro actual
-      ZOHO.embeddedApp.on("PageLoad", function(data){
-        var recordId = data.EntityId;
-        var entityName = data.Entity;
-      
-        // Actualizar el registro mediante la API de Zoho CRM
-        ZOHO.CRM.API.updateRecord({
-          Entity: entityName,
-          RecordID: recordId,
-          APIData: {
-            "Campo1": "Nuevo valor1",
-            "Campo2": "Nuevo valor2",
-            // ...
-          }
-        })
-        .then(function(response) {
-          console.log("Registro actualizado con éxito:", response);
-        })
-        .catch(function(error) {
-          console.error("Error al actualizar el registro:", error);
-        });
+
+    ZOHO.embeddedApp.on("PageLoad", function(data){
+      var id = data.EntityId, module = data.Entity;
+
+      ZOHO.CRM.API.getRecord({Entity: module, RecordID: id})
+      .then(function(data){
+        console.log(data);
       });
-    }
+      console.log("XD?")
+    });   
+
+    ZOHO.embeddedApp.init();
   </script>
 </head>
 <body>
