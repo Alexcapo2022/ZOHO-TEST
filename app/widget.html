@@ -46,17 +46,17 @@
   let recordId = 3922751000394719526;
   let newLeadName = document.getElementById("newLeadName").value;
 
-  // create a ZCRMRecord instance for the Lead record
-  let leadRecord = new ZCRM.Record.Model.Record();
+  // create a ZOHO.CRM.APIRecord instance for the Lead record
+  let leadRecord = new ZOHO.CRM.API.Record.Model.Record();
   leadRecord.setId(recordId);
   leadRecord.setModuleAPIName(moduleAPIName);
 
   // set the new name for the Lead record
-  let nameField = new ZCRM.Record.Model.Field("Nombre", newLeadName);
+  let nameField = new ZOHO.CRM.API.Record.Model.Field("Nombre", newLeadName);
   leadRecord.addField(nameField);
 
-  // update the Lead record using the ZCRMRecord instance and print the response
-  ZCRM.APIHandler.getInstance()
+  // update the Lead record using the ZOHO.CRM.APIRecord instance and print the response
+  ZOHO.CRM.API.APIHandler.getInstance()
     .updateRecord(leadRecord)
     .then(function (response) {
       console.log(response);
@@ -71,12 +71,12 @@ function updateFunction()  {
   let recordId = 3922751000394719526;
   
   // Get the selected file from the user's input (assuming you have an HTML input element with id="attachment")
-  let filesToLoad = document.getElementById("name").files;
-  let file = filesToLoad[0];
+  // let filesToLoad = document.getElementById("name").files;
+  // let file = filesToLoad[0];
   
   // Create an instance of the Zoho CRM Attachment Operations class and a FileBodyWrapper instance
-  let attachmentsOperations = new ZCRM.Attachment.Operations(moduleAPIName, recordId);
-  let fileBodyWrapper = new ZCRM.Attachment.Model.FileBodyWrapper();
+  let attachmentsOperations = new ZOHO.CRM.API.Attachment.Operations(moduleAPIName, recordId);
+  let fileBodyWrapper = new ZOHO.CRM.API.Attachment.Model.FileBodyWrapper();
   
   // Create an instance of the Zoho CRM StreamWrapper class and set it as the file property of the FileBodyWrapper instance
   let streamWrapper = new StreamWrapper.Model.StreamWrapper(null, file);
@@ -90,10 +90,10 @@ function updateFunction()  {
     console.log("Status Code: " + response.getStatusCode());
     let responseObject = response.getObject();
     if (responseObject != null) {
-      if (responseObject instanceof ZCRM.Attachment.Model.ActionWrapper) {
+      if (responseObject instanceof ZOHO.CRM.API.Attachment.Model.ActionWrapper) {
         let actionResponses = responseObject.getData();
         actionResponses.forEach(actionResponse => {
-          if (actionResponse instanceof ZCRM.Attachment.Model.SuccessResponse) {
+          if (actionResponse instanceof ZOHO.CRM.API.Attachment.Model.SuccessResponse) {
             console.log("Status: " + actionResponse.getStatus().getValue());
             console.log("Code: " + actionResponse.getCode().getValue());
             console.log("Details");
@@ -105,7 +105,7 @@ function updateFunction()  {
             }
             console.log("Message: " + actionResponse.getMessage().getValue());
           }
-          else if (actionResponse instanceof ZCRM.Attachment.Model.APIException) {
+          else if (actionResponse instanceof ZOHO.CRM.API.Attachment.Model.APIException) {
             console.log("Status: " + actionResponse.getStatus().getValue());
             console.log("Code: " + actionResponse.getCode().getValue());
             console.log("Details");
@@ -119,7 +119,7 @@ function updateFunction()  {
           }
         });
       }
-      else if (responseObject instanceof ZCRM.Attachment.Model.APIException) {
+      else if (responseObject instanceof ZOHO.CRM.API.Attachment.Model.APIException) {
         console.log("Status: " + responseObject.getStatus().getValue());
         console.log("Code: " + responseObject.getCode().getValue());
         console.log("Details");
