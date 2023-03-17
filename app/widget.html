@@ -71,8 +71,8 @@ function updateFunction()  {
     /**
      *  Update Record
      * This method is used to update a single record of a module with ID and print the response.
-     * @param {String} moduleAPIName The API Name of the record's module.
-     * @param {BigInt} recordId The ID of the record to be updated
+     * param {String} moduleAPIName The API Name of the record's module.
+     * param {BigInt} recordId The ID of the record to be updated
      */
     static async updateRecord(moduleAPIName, recordId){
 
@@ -98,15 +98,11 @@ function updateFunction()  {
          * 1 -> Call Field "." and choose the module from the displayed list and press "." and choose the field name from the displayed list.
          * 2 -> Value
          */
-        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.CITY, "City");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.Nombre, "Mauricio");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.LAST_NAME, "Last Name");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.Apellido, "Aguirre");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.FIRST_NAME, "First Name");
-
-        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.LAST_NAME, "Last Name");
-
-        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.COMPANY, "KKRNP");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.Correo1, "20192659@aloe.ulima.edu.pe");
 
         /*
          * Call addKeyValue method that takes two arguments
