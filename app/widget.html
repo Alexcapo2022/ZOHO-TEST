@@ -77,8 +77,8 @@ function updateFunction()  {
     static async updateRecord(moduleAPIName, recordId){
 
         //example
-        //let moduleAPIName = "Leads";
-        //let recordId = 3922751000394719526;
+        let moduleAPIName = "TESTING";
+        let recordId = 3922751000394719526;
 
         //Get instance of RecordOperations Class
         let recordOperations = new ZCRM.Record.Operations();
@@ -98,15 +98,15 @@ function updateFunction()  {
          * 1 -> Call Field "." and choose the module from the displayed list and press "." and choose the field name from the displayed list.
          * 2 -> Value
          */
-        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.CITY, "City");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.CITY, "City");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.LAST_NAME, "Last Name");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.LAST_NAME, "Last Name");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.FIRST_NAME, "First Name");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.FIRST_NAME, "First Name");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.LAST_NAME, "Last Name");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.LAST_NAME, "Last Name");
 
-        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.COMPANY, "KKRNP");
+        record1.addFieldValue(ZCRM.Record.Model.Field.TESTING.COMPANY, "KKRNP");
 
         /*
          * Call addKeyValue method that takes two arguments
