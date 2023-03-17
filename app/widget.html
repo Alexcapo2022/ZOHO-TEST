@@ -66,74 +66,207 @@
     });
 }*/
 function updateFunction()  {
-  // Get the module API name and record ID from your application's logic
-  let moduleAPIName = "Leads";
-  let recordId = 3922751000394719526;
-  
-  // Get the selected file from the user's input (assuming you have an HTML input element with id="attachment")
-  // let filesToLoad = document.getElementById("name").files;
-  // let file = filesToLoad[0];
-  
-  // Create an instance of the Zoho CRM Attachment Operations class and a FileBodyWrapper instance
-  let attachmentsOperations = new ZOHO.CRM.API.updateRecord(moduleAPIName, recordId);
-  //let fileBodyWrapper = new ZOHO.CRM.API.Attachment.Model.FileBodyWrapper();
-  
-  // // Create an instance of the Zoho CRM StreamWrapper class and set it as the file property of the FileBodyWrapper instance
-  // let streamWrapper = new StreamWrapper.Model.StreamWrapper(null, file);
-  // fileBodyWrapper.setFile(streamWrapper);
-  
-  // Call the uploadAttachment method of the AttachmentsOperations instance and await the response
-  // let response  = await attachmentsOperations.uploadAttachment(fileBodyWrapper);
-  
-  // Check the response for errors and log the results to the console
-  if (response != null) {
-    console.log("Status Code: " + response.getStatusCode());
-    let responseObject = response.getObject();
-    if (responseObject != null) {
-      if (responseObject instanceof ZOHO.CRM.API.Attachment.Model.ActionWrapper) {
-        let actionResponses = responseObject.getData();
-        actionResponses.forEach(actionResponse => {
-          if (actionResponse instanceof ZOHO.CRM.API.Attachment.Model.SuccessResponse) {
-            console.log("Status: " + actionResponse.getStatus().getValue());
-            console.log("Code: " + actionResponse.getCode().getValue());
-            console.log("Details");
-            let details = actionResponse.getDetails();
-            if (details != null) {
-              Array.from(details.keys()).forEach(key => {
-                console.log(key + ": " + details.get(key));
-              });
+  class Records
+{
+    /**
+     *  Update Record
+     * This method is used to update a single record of a module with ID and print the response.
+     * @param {String} moduleAPIName The API Name of the record's module.
+     * @param {BigInt} recordId The ID of the record to be updated
+     */
+    static async updateRecord(moduleAPIName, recordId){
+
+        //example
+        //let moduleAPIName = "Leads";
+        //let recordId = 3922751000394719526;
+
+        //Get instance of RecordOperations Class
+        let recordOperations = new ZCRM.Record.Operations();
+
+        //Get instance of BodyWrapper Class that will contain the request body
+        let request = new ZCRM.Record.Model.BodyWrapper();
+
+        //Array to hold Record instances
+        let recordsArray = [];
+
+        //Get instance of Record Class
+        let record1 = new ZCRM.Record.Model.Record();
+
+        /*
+         * Call addFieldValue method that takes two arguments
+         * Import the "zcrmsdk/core/com/zoho/crm/api/record/field" file
+         * 1 -> Call Field "." and choose the module from the displayed list and press "." and choose the field name from the displayed list.
+         * 2 -> Value
+         */
+        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.CITY, "City");
+
+        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.LAST_NAME, "Last Name");
+
+        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.FIRST_NAME, "First Name");
+
+        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.LAST_NAME, "Last Name");
+
+        record1.addFieldValue(ZCRM.Record.Model.Field.Leads.COMPANY, "KKRNP");
+
+        /*
+         * Call addKeyValue method that takes two arguments
+         * 1 -> A string that is the Field's API Name
+         * 2 -> Value
+         */
+        record1.addKeyValue("Custom_field", "Value");
+
+        record1.addKeyValue("Custom_field_2", "value");
+
+        record1.addKeyValue("Date_1", new Date(2017, 1, 13));
+
+        let fileDetails = [];
+
+        let fileDetail = new ZCRM.Record.Model.FileDetails();
+
+        fileDetail.setFileId("ae9c7cefa418aec1d6a5cc2d9ab35c32537b7c2400dadca8ff55f620c65357da");
+
+        fileDetails.push(fileDetail);
+
+        fileDetail = new ZCRM.Record.Model.FileDetails();
+
+        fileDetail.setFileId("ae9c7cefa418aec1d6a5cc2d9ab35c32e0063e7321b5b4ca878a934519e6cdb2");
+
+        fileDetails.push(fileDetail);
+
+        fileDetail = new ZCRM.Record.Model.FileDetails();
+
+        fileDetail.setFileId("ae9c7cefa418aec1d6a5cc2d9ab35c323daf4780bfe0058133556f155795981f");
+
+        fileDetails.push(fileDetail);
+
+        record1.addKeyValue("File_Upload", fileDetails);
+
+        //Used when GDPR is enabled
+        let dataConsent = new ZCRM.Record.Model.Consent();
+
+        dataConsent.setConsentRemarks("Approved.");
+
+        dataConsent.setConsentThrough("Email");
+
+        dataConsent.setContactThroughEmail(true);
+
+        dataConsent.setContactThroughSocial(false);
+
+        // record1.addKeyValue("Data_Processing_Basis_Details", dataConsent);
+
+        //Add Record instance to the array
+        recordsArray.push(record1);
+
+        //Set the array to Records in BodyWrapper instance
+        request.setData(recordsArray);
+
+        let trigger = [];
+
+        trigger.push("approval");
+
+        trigger.push("workflow");
+
+        trigger.push("blueprint");
+
+        request.setTrigger(trigger);
+
+        //Call updateRecord method that takes BodyWrapper instance, ModuleAPIName and recordId as parameter.
+        let response = await recordOperations.updateRecord(recordId, moduleAPIName, request);
+
+        if(response != null){
+
+            //Get the status code from response
+            console.log("Status Code: " + response.getStatusCode());
+
+            //Get object from response
+            let responseObject = response.getObject();
+
+            if(responseObject != null){
+
+                //Check if expected ActionWrapper instance is received
+                if(responseObject instanceof ZCRM.Record.Model.ActionWrapper){
+
+                    //Get the array of obtained ActionResponse instances
+                    let actionResponses = responseObject.getData();
+
+                    actionResponses.forEach(actionResponse => {
+
+                        //Check if the request is successful
+                        if(actionResponse instanceof ZCRM.Record.Model.SuccessResponse){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details != null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                        //Check if the request returned an exception
+                        else if(actionResponse instanceof ZCRM.Record.Model.APIException){
+
+                            //Get the Status
+                            console.log("Status: " + actionResponse.getStatus().getValue());
+
+                            //Get the Code
+                            console.log("Code: " + actionResponse.getCode().getValue());
+
+                            console.log("Details");
+
+                            //Get the details map
+                            let details = actionResponse.getDetails();
+
+                            if(details != null){
+                                Array.from(details.keys()).forEach(key => {
+                                    console.log(key + ": " + details.get(key));
+                                });
+                            }
+
+                            //Get the Message
+                            console.log("Message: " + actionResponse.getMessage().getValue());
+                        }
+                    });
+                }
+                //Check if the request returned an exception
+                else if(responseObject instanceof ZCRM.Record.Model.APIException){
+
+                    //Get the Status
+                    console.log("Status: " + responseObject.getStatus().getValue());
+
+                    //Get the Code
+                    console.log("Code: " + responseObject.getCode().getValue());
+
+                    console.log("Details");
+
+                    //Get the details map
+                    let details = responseObject.getDetails();
+
+                    if(details != null){
+                        Array.from(details.keys()).forEach(key => {
+                            console.log(key + ": " + details.get(key));
+                        });
+                    }
+
+                    //Get the Message
+                    console.log("Message: " + responseObject.getMessage().getValue());
+                }
             }
-            console.log("Message: " + actionResponse.getMessage().getValue());
-          }
-          else if (actionResponse instanceof ZOHO.CRM.API.Attachment.Model.APIException) {
-            console.log("Status: " + actionResponse.getStatus().getValue());
-            console.log("Code: " + actionResponse.getCode().getValue());
-            console.log("Details");
-            let details = actionResponse.getDetails();
-            if (details != null) {
-              Array.from(details.keys()).forEach(key => {
-                console.log(key + ": " + details.get(key));
-              });
-            }
-            console.log("Message: " + actionResponse.getMessage().getValue());
-          }
-        });
-      }
-      else if (responseObject instanceof ZOHO.CRM.API.Attachment.Model.APIException) {
-        console.log("Status: " + responseObject.getStatus().getValue());
-        console.log("Code: " + responseObject.getCode().getValue());
-        console.log("Details");
-        let details = responseObject.getDetails();
-        if (details != null) {
-          Array.from(details.keys()).forEach(key => {
-            console.log(key + ": " + details.get(key));
-          });
         }
-        console.log("Message: " + responseObject.getMessage().getValue());
-      }
     }
-  }
 }
+}
+
     
   </script>
 </head>
