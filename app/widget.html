@@ -75,15 +75,15 @@ function updateFunction()  {
   // let file = filesToLoad[0];
   
   // Create an instance of the Zoho CRM Attachment Operations class and a FileBodyWrapper instance
-  let attachmentsOperations = new ZOHO.CRM.API.Attachment.Operations(moduleAPIName, recordId);
-  let fileBodyWrapper = new ZOHO.CRM.API.Attachment.Model.FileBodyWrapper();
+  let attachmentsOperations = new ZOHO.CRM.API.updateRecord(moduleAPIName, recordId);
+  //let fileBodyWrapper = new ZOHO.CRM.API.Attachment.Model.FileBodyWrapper();
   
-  // Create an instance of the Zoho CRM StreamWrapper class and set it as the file property of the FileBodyWrapper instance
-  let streamWrapper = new StreamWrapper.Model.StreamWrapper(null, file);
-  fileBodyWrapper.setFile(streamWrapper);
+  // // Create an instance of the Zoho CRM StreamWrapper class and set it as the file property of the FileBodyWrapper instance
+  // let streamWrapper = new StreamWrapper.Model.StreamWrapper(null, file);
+  // fileBodyWrapper.setFile(streamWrapper);
   
   // Call the uploadAttachment method of the AttachmentsOperations instance and await the response
-  //let response  = await attachmentsOperations.uploadAttachment(fileBodyWrapper);
+  // let response  = await attachmentsOperations.uploadAttachment(fileBodyWrapper);
   
   // Check the response for errors and log the results to the console
   if (response != null) {
