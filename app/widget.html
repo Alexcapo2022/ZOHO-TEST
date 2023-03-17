@@ -29,43 +29,112 @@
         console.log(lastName)
         const input = document.querySelector("#Nombre")
         console.dir(input)
-        input.value = lastName
+        //input.value = lastName
       });
     });
     ZOHO.embeddedApp.init();
 
-    function buttonFunction(){
+    /*function buttonFunction(){
       let name = inputName.value;
     }
     var recordData = {
       Last_Name: name,
-    };
+    };*/
 
-    function updateFunction(){
-      const config = {
-        Entity: "TESTING",
-        APIData:{
-          id: 3922751000394719526,
-          Last_Name: "Duro",
-        }        
-      }   
-      console.log(config)
-      console.log(id)
-      console.log
+    /*function updateFunction() {
+  let moduleAPIName = "TESTING";
+  let recordId = 3922751000394719526;
+  let newLeadName = document.getElementById("newLeadName").value;
 
-      ZOHO.CRM.API.updateRecord(config).then(function (data){
-        console.log(data)
+  // create a ZCRMRecord instance for the Lead record
+  let leadRecord = new ZCRM.Record.Model.Record();
+  leadRecord.setId(recordId);
+  leadRecord.setModuleAPIName(moduleAPIName);
 
-        
-      }).finally(()=>{
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-        ZOHO.CRM.UI.Popup.close().then(function (data){
-          console.log(data)
-        })
-      })
+  // set the new name for the Lead record
+  let nameField = new ZCRM.Record.Model.Field("Nombre", newLeadName);
+  leadRecord.addField(nameField);
+
+  // update the Lead record using the ZCRMRecord instance and print the response
+  ZCRM.APIHandler.getInstance()
+    .updateRecord(leadRecord)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}*/
+function updateFunction()  {
+  // Get the module API name and record ID from your application's logic
+  let moduleAPIName = "Leads";
+  let recordId = 3922751000394719526;
+  
+  // Get the selected file from the user's input (assuming you have an HTML input element with id="attachment")
+  let filesToLoad = document.getElementById("name").files;
+  let file = filesToLoad[0];
+  
+  // Create an instance of the Zoho CRM Attachment Operations class and a FileBodyWrapper instance
+  let attachmentsOperations = new ZCRM.Attachment.Operations(moduleAPIName, recordId);
+  let fileBodyWrapper = new ZCRM.Attachment.Model.FileBodyWrapper();
+  
+  // Create an instance of the Zoho CRM StreamWrapper class and set it as the file property of the FileBodyWrapper instance
+  let streamWrapper = new StreamWrapper.Model.StreamWrapper(null, file);
+  fileBodyWrapper.setFile(streamWrapper);
+  
+  // Call the uploadAttachment method of the AttachmentsOperations instance and await the response
+  //let response  = await attachmentsOperations.uploadAttachment(fileBodyWrapper);
+  
+  // Check the response for errors and log the results to the console
+  if (response != null) {
+    console.log("Status Code: " + response.getStatusCode());
+    let responseObject = response.getObject();
+    if (responseObject != null) {
+      if (responseObject instanceof ZCRM.Attachment.Model.ActionWrapper) {
+        let actionResponses = responseObject.getData();
+        actionResponses.forEach(actionResponse => {
+          if (actionResponse instanceof ZCRM.Attachment.Model.SuccessResponse) {
+            console.log("Status: " + actionResponse.getStatus().getValue());
+            console.log("Code: " + actionResponse.getCode().getValue());
+            console.log("Details");
+            let details = actionResponse.getDetails();
+            if (details != null) {
+              Array.from(details.keys()).forEach(key => {
+                console.log(key + ": " + details.get(key));
+              });
+            }
+            console.log("Message: " + actionResponse.getMessage().getValue());
+          }
+          else if (actionResponse instanceof ZCRM.Attachment.Model.APIException) {
+            console.log("Status: " + actionResponse.getStatus().getValue());
+            console.log("Code: " + actionResponse.getCode().getValue());
+            console.log("Details");
+            let details = actionResponse.getDetails();
+            if (details != null) {
+              Array.from(details.keys()).forEach(key => {
+                console.log(key + ": " + details.get(key));
+              });
+            }
+            console.log("Message: " + actionResponse.getMessage().getValue());
+          }
+        });
+      }
+      else if (responseObject instanceof ZCRM.Attachment.Model.APIException) {
+        console.log("Status: " + responseObject.getStatus().getValue());
+        console.log("Code: " + responseObject.getCode().getValue());
+        console.log("Details");
+        let details = responseObject.getDetails();
+        if (details != null) {
+          Array.from(details.keys()).forEach(key => {
+            console.log(key + ": " + details.get(key));
+          });
+        }
+        console.log("Message: " + responseObject.getMessage().getValue());
+      }
     }
+  }
+}
+    
   </script>
 </head>
 <body>
