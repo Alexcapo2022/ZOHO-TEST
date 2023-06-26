@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
   
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="app.js">
@@ -35,8 +37,6 @@ function ACTUALIZAR(){
         })
       })
   }
-    
-
 
 const formulario = document.querySelector('#formulario');
 const procesaDatos = (event) => {
@@ -49,14 +49,16 @@ const procesaDatos = (event) => {
     /*El metodo get retorna el valor associado con la clave del objeto FormData */
     const correo = datos.get('email');   
     console.log({correo});
+    
 
 }
 
 
 
   
-//   let moduleAPIName = "TESTING";
-//   let recordId = 3922751000394719526;
+
+// window.location.href ="https://crmplus.zoho.com/udelima/index.do/cxapp/crm/org689647491/tab/Contacts/3922751000446333398"
+
 
 const refreshButton = document.querySelector('.refresh-button');
 
@@ -69,19 +71,16 @@ refreshButton.addEventListener('click', refreshPage)
 
   </script>
 </head>
-<!-- <body>
-  <h1 style="text-align: center;color: #ff5117;font-family: 'Bruno Ace SC', sans-serif;">RELOJ ZOHO</h1>
-    
-    <p id="demo"></p>
-    <div class="reloj">
-      <p class="tiempo"></p>
-  </div>
-  <script src="app.js"></script> -->
+<body>
+  
  
   <section class="container mt-4" style="max-width: 670px;background-color: #fafbfd;border-radius: 10px;" id="contenedor-formulario" >
-    <H2>Informacion Personal</H2>  
+
   <div>
     <div class="col-md-4" style="width: 683px;scale: auto;">
+      
+      
+      <H2>Informacion Personal</H2>  
       <style>
         .label-input-group {
           display: flex;
@@ -132,6 +131,7 @@ refreshButton.addEventListener('click', refreshPage)
           width: 100%;
         }
       </style>
+      
       <div class="row g-8 equal-height">
         <div class="row g-8">
           <div class="col">
@@ -187,10 +187,11 @@ refreshButton.addEventListener('click', refreshPage)
                 <option>CE</option>
                 <option>Otro</option>
               </select>
-            </div>           
+            </div>            
           </div>
         </div>
       </div>
+      
       <div class="row g-8">
         <div class="row g-8">
           <div class="col">
@@ -285,6 +286,7 @@ refreshButton.addEventListener('click', refreshPage)
           </div>
         </div>
       </div>
+        
       <div class="row g-8">
         <div class="row g-8">
           <div class="col">
@@ -324,36 +326,27 @@ refreshButton.addEventListener('click', refreshPage)
             </div>
             
             
-            
-          </div>
-        </div>
-      </div>
-      <div class="row g-8">
-        <div class="row g-8">
-          <div class="col">
-            <div class="label-input-group">
-              <label class="form-label"   for="daytime">Fecha/Hora</label>
-              <select id="daytime" name="daytime" style="margin-left: 0px;" class="form-select form-select-sm">
-                <option value=""class="tiempo"></option>
-                <script src="app.js"></script>
-              </select>
-          </div>
           </div>
         </div>
       </div>
 
-      <div class="mb-3">
-     <button onclick="UpdateRecord()" type="submit" style="background-color: #0279FF;color: white;border-radius: 10px;font-family: 'Open Sans', sans-serif;width: 220px;margin-left: 200PX;" class="refresh-button btn btn  fs-8 ">
-      Actualizar registro
-    </button>
-   
+
+      <div class="row g-8 equal-height">
+        <div class="col">
+          <button onclick="UpdateRecord()" type="submit" style="background-color: #0279FF;color: white;border-radius: 10px;font-family: 'Open Sans', sans-serif;" class="refresh-button btn btn fs-6 mb-3">
+            Actualizar registro
+          </button>
+        </div>
+      </div>
+
+      
+      
   </div>
 </div>
 </section>
-   
-    <script>
-      
 
+
+    <script>
       ZOHO.embeddedApp.on("PageLoad", function(data){
       var id = data.EntityId, module = data.Entity;
 
@@ -369,23 +362,18 @@ refreshButton.addEventListener('click', refreshPage)
       const inputName2 = document.getElementById("nombre");
       const inputName3 = document.getElementById("codul")
       const inputName4 = document.getElementById("apellido")
-      const inputName5 = document.getElementById("fav")
-      const inputName6 = document.getElementById("doc")
-      const inputName7 = document.getElementById("departamento")
-      const inputName8 = document.getElementById("provincia")
-      const inputName9 = document.getElementById("distrito")
-      const inputName10 = document.getElementById("dni")
-      const inputName11 = document.getElementById("codps")
-      const inputName12 = document.getElementById("genero")
-      const inputName13 = document.getElementById("domicilio")
-      const inputName14 = document.getElementById("date")
-      const inputName15 = document.getElementById("sl")
-      const inputName16 = document.getElementById("lugarNacimiento")
-      const inputName17 = document.getElementById("daytime")
-      
-      
-      
-
+      const inputName5 = document.getElementById("date")
+      const inputName6 = document.getElementById("lugarNacimiento")
+      const inputName7 = document.getElementById("genero")
+      const inputName8 = document.getElementById("departamento")
+      const inputName9 = document.getElementById("provincia")
+      const inputName10 = document.getElementById("distrito")
+      const inputName11 = document.getElementById("doc")
+      const inputName12 = document.getElementById("dni")
+      const inputName13 = document.getElementById("codps")
+      const inputName14 = document.getElementById("sl")
+      const inputName15 = document.getElementById("domicilio")
+      const inputName16 = document.getElementById("ubigeo")
       ZOHO.embeddedApp.on("PageLoad",function(data){
       id = data.EntityId[0];
       console.log(id);
@@ -399,21 +387,18 @@ refreshButton.addEventListener('click', refreshPage)
         const nombre = data.data[0].First_Name
         const codul = data.data[0].UL_CODIGO
         const apellido = data.data[0].Last_Name
-        const fav = data.data[0].Nombre_favorito
-        const doc = data.data[0].Tipo_documento
+        const fecha = data.data[0].Date_of_Birth
+        const lugarnacimiento = data.data[0].Lugar_de_nacimiento
+        const genero = data.data[0].G_nero
         const departamento = data.data[0].Department
         const provincia = data.data[0].Provincia
         const distrito = data.data[0].Distrito
-        const dni = data.data[0].UL_DNI
-        const codps = data.data[0].UL_CO_ID_PS
-        const genero = data.data[0].G_nero
-        const domicilio = data.data[0].Domicilio
-        const date = data.data[0].Date_of_Birth
-        const sl = data.data[0].Situaci_n_Laboral
-        const lugarNacimiento = data.data[0].Lugar_de_nacimiento
-        
-        
-
+        const doc = data.data[0].Tipo_documento
+        const dni= data.data[0].UL_DNI
+        const codps= data.data[0].UL_CO_ID_PS
+        const sl= data.data[0].Situaci_n_Laboral
+        const domicilio= data.data[0].Domicilio
+        const ubigeo = data.data[0].Ubigeo
         // const cod = data.data[0].	Codigo_UL
         // console.log(lastName)
          console.log(email)
@@ -421,41 +406,39 @@ refreshButton.addEventListener('click', refreshPage)
          const input2 = document.querySelector("#nombre");
          const input3 = document.querySelector("#codul");
          const input4 = document.querySelector("#apellido");
-         const input5 = document.querySelector("#fav");
-         const input6 = document.querySelector("#doc");
-         const input7 = document.querySelector("#departamento");
-         const input8 = document.querySelector("#provincia");
-         const input9 = document.querySelector("#distrito");
-         const input10 = document.querySelector("#dni");
-         const input11 = document.querySelector("#codps");
-         const input12 = document.querySelector("#genero");
-         const input13 = document.querySelector("#domicilio");
-         const input14 = document.querySelector("#date");
-         const input15 = document.querySelector("#sl");
-         const input16 = document.querySelector("#lugarNacimiento");
-         const input17 = document.querySelector("#daytime");
-      
+         const input5 = document.querySelector("#date");
+         const input6 = document.querySelector("#lugarNacimiento");
+         const input7 = document.querySelector("#genero");
+         const input8 = document.querySelector("departamento");
+         const input9 = document.querySelector("#provincia")
+         const input10 = document.querySelector("#distrito")
+         const input11 = document.querySelector("#doc")
+         const input12 = document.querySelector("#dni")
+         const input13 = document.querySelector("#codps")
+         const input14 = document.querySelector("#sl")
+         const input15 = document.querySelector("#domicilio")
+         const input16 = document.querySelector("#ubigeo")
+
          console.dir(input)
          input.value = email
          input2.value = nombre
          input3.value = codul
          input4.value = apellido
-         input5.value = fav
-         input6.value = doc
-         input7.value = departamento
-         input8.value = provincia
-         input9.value = distrito
-         input10.value = dni
-         input11.value = codps
-         input12.value = genero
-         input13.value = domicilio
-         input14.value = date
-         input15.value = sl
-         input16.value = lugarNacimiento
-         input17.value = daytime
-         
-         
-   
+         input5.value = fecha
+         input6.value = lugarnacimiento
+         input7.value = genero
+         input8.value = departamento
+         input9.value = provincia
+         input10.value = distrito
+         input11.value = doc
+         input12.value = dni
+         input13.value = codps
+         input14.value = sl
+         input15.value = domicilio
+         input16.value = ubigeo
+
+        // console.log(nombre)
+        // console.log(cod)
         
       });
     });
@@ -466,44 +449,39 @@ refreshButton.addEventListener('click', refreshPage)
       let nombre = inputName2.value2;
       let codul = inputName3.value;
       let apellido = inputName4.value;
-      let fav = inputName5.value;
-      let doc = inputName6.value;
-      let departamento = inputName7.value;
-      let provincia = inputName8.value;
-      let distrito = inputName9.value;
-      let dni = inputName10.value;
-      let codps = inputName11.value;
-      let genero = inputName12.value;
-      let domicilio = inputName13.value;
-      let date = inputName14.value;
-      let sl = inputName15.value;
-      let lugarNacimiento = inputName16.value;
-      let daytime = inputName17.value;
+      let fecha = inputName5.value;
+      let lugarNacimiento = inputName6.value;
+      let genero = inputName7.value;
+      let departamento = inputName8.value;
+      let provincia = inputName9.value;
+      let distrito = inputName10.value;
+      let doc = inputName11.value;
+      let dni = inputName12.value;
+      let codps = inputName13.value;
+      let sl = inputName14.value;
+      let domicilio = inputName15.value;
+      let ubigeo = inputName16.value;
       
 
     }
     var recordData = {
       Email : email,
       Nombre : nombre,
-      Codigo_UL : codul,
+      UL_CODIGO : codul,
       Apellido : apellido,
-      Name : fav,
-      Doc : doc,
-      Departamento : departamento,
-      Provincia : provincia,
+      Date_of_Birth : fecha,
+      Lugar_de_nacimiento	: lugarNacimiento,
+      G_nero : genero,
+      Department: departamento,
+      Provincia	: provincia,
       Distrito : distrito,
-      Dni : dni,
-      Codps : codps,
-      Genero : genero,
-      Domicilio : domicilio,
-      Date : date,
-      Sl : sl,
-      LugarNacimiento :lugarNacimiento,
-      Daytime : daytime,
-    
-
+      Tipo_documento : doc,
+      UL_DNI : dni,
+      UL_CO_ID_PS	: codps,
+      Situaci_n_Laboral	: sl,
+      Domicilio	: domicilio,
+      Ubigeo	: ubigeo,
     };
-    
     
 
     function UpdateRecord(){
@@ -512,29 +490,26 @@ var config={
   APIData:{
         id:id,
         Email :inputName.value,
-        Codigo_UL:inputName3.value,
-        First_Name : inputName2.value,
-        Last_Name:inputName4.value,
-        Nombre_favorito:inputName5.value,
-        Tipo_documento:inputName6.value,
-        Department:inputName7.value,
-        Provincia:inputName8.value,
-        Distrito:inputName9.value,
-        UL_DNI:inputName10.value,
-        UL_CO_ID_PS:inputName11.value,
-        G_nero:inputName12.value,
-        Domicilio:inputName13.value,
-        Date_of_Birth:inputName14.value,
-        Situaci_n_Laboral:inputName15.value,
-        Lugar_de_nacimiento:inputName16.value,
-        Fecha_hora:inputName17.value,
-        
-
-        
+        //"Apellido": "gamonal",
+        //"Email" : "PAPITA@GMAIL.COM",
+        UL_CODIGO:inputName3.value,
+        Nombre : inputName2.value,
+        Apellido :inputName4.value,
+        Date_of_Birth:inputName5.value,
+        Lugar_de_nacimiento:inputName6.value,
+        G_nero:inputName7.value,
+        Department:inputName8.value,
+        Provincia:inputName9.value,
+        Distrito:inputName10.value,
+        Tipo_documento:inputName11.value,
+        UL_DNI:inputName12.value,
+        UL_CO_ID_PS:inputName13.value,
+        Situaci_n_Laboral:inputName14.value,
+        Domicilio :inputName15.value,
+        Ubigeo :inputName16.value,
       
   },
   Trigger:["workflow"]
-  //WK_CREATE_LEADS = zoho.crm.createRecord("Leads",mapaLeads,{"trigger":{"workflow"}});
 }
 ZOHO.CRM.API.updateRecord(config)
 .then(function(data){
@@ -545,11 +520,9 @@ ZOHO.CRM.API.updateRecord(config)
           console.log(data)
         })})
 }
-    
-    
-      
     </script>
   
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="./main.js"></script>
 </body>

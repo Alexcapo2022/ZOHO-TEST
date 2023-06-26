@@ -1,36 +1,47 @@
 .reloj {
-    color: #0d1420;
+    color: white;
     font-size: 120px;
-    font-family: Arial;
+    
     letter-spacing: 5px;
     text-align: center;
-    background-color: #ffa031;
-    border: 10px solid #091321;
+    background-color: #ff5117;
+    border: 5px solid black;
     border-radius: 20px;
+	font-family: 'Bruno Ace SC', sans-serif;
 } 
 
 @media only screen and (min-width: 200px) {
 	.reloj {
-	    color: #0d1420;
+	    color: white;
 	    font-size: 60px;
-	    font-family: Arial;
+	    font-family: 'Bruno Ace SC', sans-serif;
 	    letter-spacing: 5px;
 	    text-align: center;
-	    background-color: #ffa031;
-	    border: 10px solid #091321;
+	    background-color: #ff5117;
+	    border: 5px solid black;
 	    border-radius: 20px;
 	}
 }
 
 @media only screen and (min-width: 960px) {
 	.reloj {
-	    color: #0d1420;
+	    color: white;
 	    font-size: 120px;
-	    font-family: Arial;
+	    font-family: 'Bruno Ace SC', sans-serif;
 	    letter-spacing: 5px;
 	    text-align: center;
-	    background-color: #ffa031;
-	    border: 10px solid #091321;
+	    background-color: #ff5117;
+	    border: 5px solid black;
 	    border-radius: 20px;
 	}
+
 } 
+.form-label {
+	color:#616e88;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	
+}
+.col-form-label{
+	color:#616e88;
+}
