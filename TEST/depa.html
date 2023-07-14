@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+    <style>
+        .label-select-group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+        }
+      
+        .form-label {
+          margin-bottom: 5px;
+        }
+      
+        .form-select {
+          width: 212.55px;
+          padding: 8px;
+          border: none;
+          border-radius: 4px;
+          background-color: #f2f2f2;
+          color: #333333;
+          font-size: 14px;
+        }
+      
+        .form-select option {
+          background-color: #ffffff;
+          color: #333333;
+        }
+      </style>
+      
+      <div class="label-select-group">
+        <label class="form-label" for="departamento">Departamento</label>
+        <select id="departamento" name="departamento" class="form-select form-select-sm">
+          <option value="">Seleccionar departamento</option>
+        </select>
+      </div>
+      
+      <div class="label-select-group">
+        <label class="form-label" for="provincia">Provincia</label>
+        <select id="provincia" name="provincia" class="form-select form-select-sm">
+          <option value="">Seleccionar provincia</option>
+        </select>
+      </div>
+      
+      <div class="label-select-group">
+        <label class="form-label" for="distrito">Distrito</label>
+        <select id="distrito" name="distrito" class="form-select form-select-sm">
+          <option value="">Seleccionar distrito</option>
+        </select>
+      </div>
+
+<script>
+  const data = {
+    "01" : {
+    "DEPARTAMENTO": "LIMA",
+    "PROVINCIAS": {
+      "01": {
+        "PROVINCIA": "LIMA",
+        "DISTRITOS": {
+          "150101": "LIMA",
+          "150102": "ANCON",
+          "150103": "ATE",
+          "150104": "BARRANCO",
+          "150105": "BREÑA",
+          "150106": "CARABAYLLO",
+          "150107": "CHACLACAYO",
+          "150108": "CHORRILLOS",
+          "150109": "CIENEGUILLA",
+          "150110": "COMAS",
+          "150111": "EL AGUSTINO",
+          "150112": "INDEPENDENCIA",
+          "150113": "JESUS MARIA",
+          "150114": "LA MOLINA",
+          "150115": "LA VICTORIA",
+          "150116": "LINCE",
+          "150117": "LOS OLIVOS",
+          "150118": "LURIGANCHO",
+          "150119": "LURIN",
+          "150120": "MAGDALENA DEL MAR",
+          "150121": "MAGDALENA VIEJA",
+          "150122": "MATELLINI",
+          "150123": "MIRAFLORES",
+          "150124": "PACHACAMAC",
+          "150125": "PUCUSANA",
+          "150126": "PUENTE PIEDRA",
+          "150127": "PUNTA HERMOSA",
+          "150128": "PUNTA NEGRA",
+          "150129": "RIMAC",
+          "150130": "SAN BARTOLO",
+          "150131": "SAN BORJA",
+          "150132": "SAN ISIDRO",
+          "150133": "BREÑA",
+          "150134": "SAN JUAN DE LURIGANCHO",
+          "150135": "SAN JUAN DE MIRAFLORES",
+          "150136": "SAN LUIS",
+          "150137": "SAN MARTIN DE PORRES",
+          "150138": "SAN MIGUEL",
+          "150139": "SANTA ANITA",
+          "150140": "SANTA MARIA DEL MAR",
+          "150141": "SANTA ROSA",
+          "150142": "SANTIAGO DE SURCO",
+          "150143": "SURQUILLO",
+          "150144": "VILLA EL SALVADOR",
+          "150145": "VILLA MARIA DEL TRIUNFO"
+        }
+      }
+    }
+    },
+  
+    "02": {
+      "DEPARTAMENTO": "AMAZONAS",
+      "PROVINCIAS": {
+        "01": {
+          "PROVINCIA": "CHACHAPOYAS",
+          "DISTRITOS": {
+            "010101": "CHACHAPOYAS",
+            "010102": "ASUNCION",
+            "010103": "BALSAS",
+            "010104": "CHETO",
+            "010105": "CHILIQUIN",
+            "010106": "CHUQUIBAMBA",
+            "010107": "GRANADA",
+            "010108": "HUANCAS",
+            "010109": "LA JALCA",
+            "010110": "LEIMEBAMBA",
+            "010111": "LEVANTO",
+            "010112": "MAGDALENA",
+            "010113": "MARISCAL CASTILLA",
+            "010114": "MOLINOPAMPA",
+            "010115": "MONTEVIDEO",
+            "010116": "OLLEROS",
+            "010117": "QUINJALCA",
+            "010118": "SAN FCO DE DAGUAS",
+            "010119": "SAN ISIDRO DE MAINO"
+          }
+        },
+        "02": {
+          "PROVINCIA": "BAGUA",
+          "DISTRITOS": {
+            "020101": "BAGUA",
+            "020102": "ARAMANGO",
+            "020103": "COPALLIN",
+            "020104": "EL PARCO",
+            "020105": "IMAZA",
+            "020106": "LA PECA"
+          }
+        },
+        "03": {
+          "PROVINCIA": "BONGARA",
+          "DISTRITOS": {
+            "030101": "JUMBILLA",
+            "030102": "CHISQUILLA",
+            "030103": "CHURUJA",
+            "030104": "COROSHA",
+            "030105": "CUISPES",
+            "030106": "FLORIDA",
+            "030107": "JAZAN",
+            "030108": "RECTA",
+            "030109": "SAN CARLOS",
+            "030110": "SHIPASBAMBA",
+            "030111": "VALERA",
+            "030112": "YAMBRASBAMBA"
+          }
+        },
+        "04": {
+          "PROVINCIA": "LUYA",
+          "DISTRITOS": {
+            "040101": "LAMUD",
+            "040102": "CAMPORREDONDO",
+            "040103": "COCABAMBA",
+            "040104": "COLCAMAR",
+            "040105": "CONILA",
+            "040106": "INGUILPATA",
+            "040107": "LONGUITA",
+            "040108": "LONYA CHICO",
+            "040109": "LUYA",
+            "040110": "LUYA VIEJO",
+            "040111": "MARIA",
+            "040112": "OCALLI",
+            "040113": "OCUMAL",
+            "040114": "PISUQUIA",
+            "040115": "PROVIDENCIA",
+            "040116": "SAN CRISTOBAL",
+            "040117": "SAN FRANCISCO DE YESO",
+            "040118": "SAN JERONIMO",
+            "040119": "SAN JUAN DE LOPECANCHA",
+            "040120": "SANTA CATALINA",
+            "040121": "SANTO TOMAS",
+            "040122": "TINGO",
+            "040123": "TRITA"
+          }
+        },
+        "05": {
+          "PROVINCIA": "RODRIGUEZ DE MENDOZA",
+          "DISTRITOS": {
+            "050101": "CHISQUILLA",
+            "050102": "CHURUJA",
+            "050103": "FLORIDA",
+            "050104": "JAZAN",
+            "050105": "RECTA",
+            "050106": "SAN CARLOS",
+            "050107": "SHIPASBAMBA",
+            "050108": "VALERA",
+            "050109": "YAMBRASBAMBA"
+          }
+        },
+        "06": {
+          "PROVINCIA": "CONDORCANQUI",
+          "DISTRITOS": {
+            "060101": "LOPEZ DE MICAY",
+            "060102": "SANTA ROSA",
+            "060103": "SAN JOSE",
+            "060104": "PANAMA",
+            "060105": "SANTIAGO",
+            "060106": "SAN FELIX"
+          }
+        },
+        "07": {
+          "PROVINCIA": "UTCUBAMBA",
+          "DISTRITOS": {
+            "070101": "BAGUA GRANDE",
+            "070102": "CAJARURO",
+            "070103": "CUMBA",
+            "070104": "EL MILAGRO",
+            "070105": "JAMALCA",
+            "070106": "LONYA GRANDE",
+            "070107": "YAMON"
+          }
+        }
+      }
+    },
+    "03": {
+      "DEPARTAMENTO": "ANCASH",
+      "PROVINCIAS": {
+        "01": {
+          "PROVINCIA": "HUARAZ",
+          "DISTRITOS": {
+            "020101": "HUARAZ",
+            "020102": "COCHABAMBA",
+            "020103": "COLCABAMBA",
+            "020104": "HUANCHAY",
+            "020105": "INDEPENDENCIA",
+            "020106": "JANGAS",
+            "020107": "LA LIBERTAD",
+            "020108": "OLLEROS",
+            "020109": "PAMPAS GRANDE",
+            "020110": "PARIACOTO",
+            "020111": "PIRA",
+            "020112": "TARICA"
+          }
+        },
+        "02": {
+          "PROVINCIA": "AIJA",
+          "DISTRITOS": {
+            "020201": "AIJA",
+            "020202": "CORIS",
+            "020203": "HUACLLAN",
+            "020204": "LA MERCED",
+            "020205": "SUCCHA"
+          }
+        },
+        "03": {
+          "PROVINCIA": "ANTONIO RAIMONDI",
+          "DISTRITOS": {
+            "020301": "LLAMELLIN",
+            "020302": "ACZO",
+            "020303": "CHACCHO",
+            "020304": "CHINGAS",
+            "020305": "MIRGAS",
+            "020306": "SAN JUAN DE RONTOY",
+            "020307": "PUERTO PIZARRO",
+            "020308": "INDEPENDENCIA",
+            "020309": "JOSE CRESPO Y CASTILLO"
+          }
+        },
+        "04": {
+          "PROVINCIA": "ASUNCION",
+          "DISTRITOS": {
+            "020401": "CHACAS",
+            "020402": "ACOCHACA"
+          }
+        },
+        "05": {
+          "PROVINCIA": "BOLOGNESI",
+          "DISTRITOS": {
+            "020501": "CHIQUIAN",
+            "020502": "ABELARDO PARDO LEZAMETA",
+            "020503": "ANTONIO RAYMONDI",
+            "020504": "AQUIA",
+            "020505": "CAJACAY",
+            "020506": "CANIS",
+            "020507": "COLQUIOC",
+            "020508": "HUALLANCA",
+            "020509": "HUASTA",
+            "020510": "HUAYLLACAYAN",
+            "020511": "LA PRIMAVERA",
+            "020512": "MANGAS",
+            "020513": "PACLLON",
+            "020514": "SAN MIGUEL DE CORPANQUI",
+            "020515": "TICLLOS"
+          }
+        },
+        "06": {
+          "PROVINCIA": "CARHUAZ",
+          "DISTRITOS": {
+            "020601": "CARHUAZ",
+            "020602": "ACOPAMPA",
+            "020603": "AMASHCA",
+            "020604": "ANTA",
+            "020605": "ATAQUERO",
+            "020606": "MARCARA",
+            "020607": "PARIAHUANCA",
+            "020608": "SAN MIGUEL DE ACO",
+            "020609": "SHILLA",
+            "020610": "TINCO",
+            "020611": "YUNGAR"
+          }
+        },
+        "07": {
+          "PROVINCIA": "CARLOS FERMIN FITZCARRALD",
+          "DISTRITOS": {
+            "020701": "SAN LUIS",
+            "020702": "SAN NICOLAS",
+            "020703": "YAUYA",
+            "020704": "CASMA",
+            "020705": "BUENA VISTA ALTA",
+            "020706": "COMANDANTE NOEL",
+            "020707": "YAUTAN"
+          }
+        }
+      }
+    },
+    "04": {
+      "DEPARTAMENTO": "APURIMAC",
+      "PROVINCIAS": {
+        "01": {
+          "PROVINCIA": "ABANCAY",
+          "DISTRITOS": {
+            "030101": "ABANCAY",
+            "030102": "CHACOCHE",
+            "030103": "CIRCA",
+            "030104": "CURAHUASI",
+            "030105": "HUANIPACA",
+            "030106": "LAMBRAMA",
+            "030107": "PICHIRHUA",
+            "030108": "SAN PEDRO DE CACHORA",
+            "030109": "TAMBURCO"
+          }
+        },
+        "02": {
+          "PROVINCIA": "ANDAHUAYLAS",
+          "DISTRITOS": {
+            "030201": "ANDAHUAYLAS",
+            "030202": "ANDARAPA",
+            "030203": "CHIARA",
+            "030204": "HUANCARAMA",
+            "030205": "HUANCARAY",
+            "030206": "HUAYANA",
+            "030207": "KISHUARA",
+            "030208": "PACOBAMBA",
+            "030209": "PACUCHA",
+            "030210": "PAMPACHIRI",
+            "030211": "POMACOCHA",
+            "030212": "SAN ANTONIO DE CACHI",
+            "030213": "SAN JERONIMO",
+            "030214": "SAN MIGUEL DE CHACCRAMPA",
+            "030215": "SANTA MARIA DE CHICMO"
+          }
+        },
+        "03": {
+          "PROVINCIA": "ANTABAMBA",
+          "DISTRITOS": {
+            "030301": "ANTABAMBA",
+            "030302": "EL ORO",
+            "030303": "HUAQUIRCA",
+            "030304": "JUAN ESPINOZA MEDRANO",
+            "030305": "OROPESA",
+            "030306": "PACHACONAS",
+            "030307": "SABAINO"
+          }
+        },
+        "04": {
+          "PROVINCIA": "AYMARAES",
+          "DISTRITOS": {
+            "030401": "CHALHUANCA",
+            "030402": "CAPAYA",
+            "030403": "CARAYBAMBA",
+            "030404": "CHAPIMARCA",
+            "030405": "COLCABAMBA",
+            "030406": "COTARUSE",
+            "030407": "CHUQUIBAMBILLA",
+            "030408": "GRAU",
+            "030409": "HUAYLLO",
+            "030410": "ICAICA",
+            "030411": "LUCRE",
+            "030412": "POCOHUANCA",
+            "030413": "SAN JUAN DE CHACÑA",
+            "030414": "SAÑAYCA",
+            "030415": "SORAYA",
+            "030416": "TAPAIRIHUA",
+            "030417": "TINTAY",
+            "030418": "TORAYA",
+            "030419": "YANACA"
+          }
+        },
+        "05": {
+          "PROVINCIA": "COTABAMBAS",
+          "DISTRITOS": {
+            "030501": "TAMBOBAMBA",
+            "030502": "COTABAMBAS",
+            "030503": "COYLLURQUI",
+            "030504": "HAQUIRA",
+            "030505": "MARA",
+            "030506": "CHALLHUAHUACHO"
+          }
+        },
+        "06": {
+          "PROVINCIA": "CHINCHEROS",
+          "DISTRITOS": {
+            "030601": "CHINCHEROS",
+            "030602": "ANCO_HUALLO",
+            "030603": "COCHARCAS",
+            "030604": "HUACCANA",
+            "030605": "OCOBAMBA",
+            "030606": "ONGOY",
+            "030607": "URANMARCA",
+            "030608": "RANRACANCHA",
+            "030609": "ROCO",
+            "030610": "EL PORVENIR"
+          }
+        },
+        "07": {
+          "PROVINCIA": "GRAU",
+          "DISTRITOS": {
+            "030701": "CHUQUIBAMBILLA",
+            "030702": "CURPAHUASI",
+            "030703": "GAMARRA",
+            "030704": "HUAYLLATI",
+            "030705": "MAMARA",
+            "030706": "MICAELA BASTIDAS",
+            "030707": "PATAYPAMPA",
+            "030708": "PROGRESO",
+            "030709": "SAN ANTONIO",
+            "030710": "SANTA ROSA",
+            "030711": "TURPAY",
+            "030712": "VILCABAMBA",
+            "030713": "VIRUNDO"
+          }
+        }
+      }
+    },
+  "05": {
+    "DEPARTAMENTO": "AREQUIPA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "06": {
+    "DEPARTAMENTO": "AYACUCHO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "07": {
+    "DEPARTAMENTO": "CAJAMARCA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "08": {
+    "DEPARTAMENTO": "CUSCO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "09": {
+    "DEPARTAMENTO": "HUANCAVELICA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "10": {
+    "DEPARTAMENTO": "HUANUCO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "11": {
+    "DEPARTAMENTO": "ICA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "12": {
+    "DEPARTAMENTO": "JUNIN",
+    "PROVINCIAS": {
+
+    }
+  },
+  "13": {
+    "DEPARTAMENTO": "LA LIBERTAD",
+    "PROVINCIAS": {
+
+    }
+  },
+  "14": {
+    "DEPARTAMENTO": "LAMBAYEQUE",
+    "PROVINCIAS": {
+
+    }
+  },
+  "15": {
+    "DEPARTAMENTO": "LORETO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "16": {
+    "DEPARTAMENTO": "MADRE DE DIOS",
+    "PROVINCIAS": {
+
+    }
+  },
+  "17": {
+    "DEPARTAMENTO": "MOQUEGUA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "18": {
+    "DEPARTAMENTO": "PASCO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "19": {
+    "DEPARTAMENTO": "PIURA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "20": {
+    "DEPARTAMENTO": "PUNO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "21": {
+    "DEPARTAMENTO": "SAN MARTIN",
+    "PROVINCIAS": {
+
+    }
+  },
+  "22": {
+    "DEPARTAMENTO": "TACNA",
+    "PROVINCIAS": {
+
+    }
+  },
+  "23": {
+    "DEPARTAMENTO": "TUMBES",
+    "PROVINCIAS": {
+
+    }
+  },
+  "24": {
+    "DEPARTAMENTO": "PROV. CONST. DEL CALLAO",
+    "PROVINCIAS": {
+
+    }
+  },
+  "25": {
+    "DEPARTAMENTO": "UCAYALI",
+    "PROVINCIAS": {
+
+    }
+  }
+}
+   
+
+  
+  
+
+const departamentoSelect = document.getElementById('departamento');
+const provinciaSelect = document.getElementById('provincia');
+const distritoSelect = document.getElementById('distrito');
+
+// Llenar el select de departamentos
+for (let codigoDepartamento in data) {
+  const option = document.createElement('option');
+  option.value = codigoDepartamento;
+  option.textContent = data[codigoDepartamento].DEPARTAMENTO;
+  departamentoSelect.appendChild(option);
+}
+
+// Función para mostrar las provincias del departamento seleccionado
+function mostrarProvincias() {
+  const codigoDepartamentoSeleccionado = departamentoSelect.value;
+  provinciaSelect.innerHTML = '<option value="">Opciones</option>'; // Limpiar opciones anteriores
+  distritoSelect.innerHTML = '<option value="">Opciones</option>'; // Limpiar opciones anteriores
+
+  if (codigoDepartamentoSeleccionado !== '') {
+    const provincias = data[codigoDepartamentoSeleccionado].PROVINCIAS;
+
+    for (let codigoProvincia in provincias) {
+      const option = document.createElement('option');
+      option.value = codigoProvincia;
+      option.textContent = provincias[codigoProvincia].PROVINCIA;
+      provinciaSelect.appendChild(option);
+    }
+  }
+}
+
+// Función para mostrar los distritos de la provincia seleccionada
+function mostrarDistritos() {
+  const codigoDepartamentoSeleccionado = departamentoSelect.value;
+  const codigoProvinciaSeleccionada = provinciaSelect.value;
+  distritoSelect.innerHTML = '<option value="">Opciones</option>'; // Limpiar opciones anteriores
+
+  if (codigoDepartamentoSeleccionado !== '' && codigoProvinciaSeleccionada !== '') {
+    const distritos = data[codigoDepartamentoSeleccionado].PROVINCIAS[codigoProvinciaSeleccionada].DISTRITOS;
+
+    for (let codigoDistrito in distritos) {
+      const option = document.createElement('option');
+      option.value = codigoDistrito;
+      option.textContent = distritos[codigoDistrito];
+      distritoSelect.appendChild(option);
+    }
+  }
+}
+
+departamentoSelect.addEventListener('change', mostrarProvincias);
+provinciaSelect.addEventListener('change', mostrarDistritos);
+</script>
+
+</body>
+</html>
