@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
   <title>Widget</title>
 </head>
 
@@ -139,11 +140,12 @@
           <div class="row g-8">
             <div class="col">
               <div class="label-select-group">
-                <label class="form-label" for="departamento">Departamento</label>
+                <label class="form-label" for="departamento">Seleccionar <br>Departamento</label>
                 <select id="departamento" style="margin-left: 10px;width: 180px;" name="departamento"
                   class="form-select form-select-sm">
                   <option value="">Opciones</option>
                 </select>
+
               </div>
 
             </div>
@@ -162,11 +164,10 @@
           <div class="row g-8">
             <div class="col">
               <div class="label-select-group">
-                <label class="form-label" for="provincia">Provincia</label>
-                <select id="provincia" style="margin-left: 5px;width: 212.55px;" name="provincia"
-                  class="form-select form-select-sm">
-                  <option value="">Opciones</option>
-                </select>
+                <label class="form-label" for="dep">Departamento </label>
+                <input type="text" id="dep" style="margin-left: 15px;" class="form-control form-control-sm" disabled
+                  name="dep"><br>
+
               </div>
             </div>
             <div class="col">
@@ -186,11 +187,13 @@
           <div class="row g-8">
             <div class="col">
               <div class="label-select-group">
-                <label class="form-label" for="distrito">Distrito</label>
-                <select id="distrito" style="margin-left: 15px;width: 212.55px;" name="distrito"
+                <label class="form-label" for="provincia">Seleccionar <br>Provincia</label>
+                <select id="provincia" style="margin-left: 5px;width: 212.55px;" name="provincia"
                   class="form-select form-select-sm">
                   <option value="">Opciones</option>
                 </select>
+
+
               </div>
             </div>
             <div class="col">
@@ -210,16 +213,20 @@
           <div class="row g-8">
             <div class="col">
               <div class="label-input-group">
-                <label class="form-label" for="domicilio">Domicilio</label>
+                <label class="form-label" for="prov">Provincia</label>
+                <input type="text" id="prov" style="margin-left: 20px;width: 212.55px;"
+                  class="form-control form-control-sm" name="prov" disabled><br>
+                <!-- <label class="form-label" for="domicilio">Domicilio</label>
                 <input type="text" id="domicilio" style="margin-left: 5px;width: 212.55px;"
-                  class="form-control form-control-sm" name="domicilio"><br>
+                  class="form-control form-control-sm" name="domicilio"><br> -->
               </div>
             </div>
             <div class="col">
               <div class="label-input-group">
-                <label class="form-label" for="date">Fecha de Nacimiento</label>
-                <input type="date" id="date" style="margin-left: 10px;width: 165px;"
-                  class="form-control form-control-sm" name="date">
+                <label class="form-label" for="domicilio">Domicilio</label>
+                <input type="text" id="domicilio" style="margin-left: 28px;width: 212.55px;"
+                  class="form-control form-control-sm" name="domicilio"><br>
+
               </div>
 
             </div>
@@ -230,14 +237,32 @@
           <div class="row g-8">
             <div class="col">
               <div class="label-input-group">
-                <label class="form-label" for="sl">Situación Laboral</label>
-                <select id="sl" name="sl" style="margin-left: 5px;width: 170px;" class="form-select form-select-sm">
+                <label class="form-label" for="distrito">Seleccionar <br>Distrito</label>
+                <select id="distrito" style="margin-left: 0px;width: 212.55px;" name="distrito"
+                  class="form-select form-select-sm disabled">
                   <option value="">Opciones</option>
-                  <option>Dependiente</option>
-                  <option>Independiente</option>
-                  <option>Jubilado</option>
-                  <option>Transición laboral</option>
                 </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="label-input-group">
+                <label class="form-label" for="date">Fecha de Nacimiento</label>
+                <input type="date" id="date" style="margin-left: 10px;width: 165px;"
+                  class="form-control form-control-sm" name="date">
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="row g-8">
+          <div class="row g-8">
+            <div class="col">
+              <div class="label-input-group">
+                <label class="form-label" for="dist">Distrito</label>
+                <input type="text" id="dist" style="margin-left: 28px;width: 212.55px;"
+                  class="form-control form-control-sm" name="dist" disabled><br>
               </div>
             </div>
             <div class="col">
@@ -251,6 +276,10 @@
             </div>
           </div>
         </div>
+        <form id="idForm" style="margin-bottom: 50px">
+          <label for="idInput">ID:</label>
+          <input type="text" id="idInput" name="id" disabled>
+        </form>
 
         <script>
           const data = {
@@ -3376,7 +3405,6 @@
 
         </script>
         <script>
-
         </script>
         <!-- SCRIPT PARA LOS CHECKLIST DE DEP-PROV-DIST -->
         <script>
@@ -3452,170 +3480,300 @@
             class="refresh-button btn btn  fs-8 ">
             Actualizar registro
             <script>
+              // ZOHO.embeddedApp.on("PageLoad", function (data) {
+              //   // Obtener el ID del registro actual
+              //   const entityId = data.EntityId[0];
+              //   console.log("ID test:", entityId);
+
+              //   // Asignar el ID a la variable global para que pueda ser utilizado en la función UpdateRecord
+              //   window.entityId = entityId;
+              // });
+
+
+              // function UpdateRecord() {
+              //   // Obtener el ID almacenado en la variable global
+              //   const entityId = window.entityId;
+
+              //   if (!entityId) {
+              //     console.error("Error: No se ha obtenido el ID del registro actual.");
+              //     return;
+              //   }
+
+              //   const url = "https://serene-tundra-47257-a3e93549724c.herokuapp.com/api/zoho/update?id=${entityId}";
 
 
 
-              function UpdateRecord() {
-                const currentUrl = window.location.href;
+              //   // Obtener los valores de los campos del formulario
+              //   // const id = "3922751000446333398"; // ID de referencia
+              //   const nombreInput = document.getElementById('nombre').value;
+              //   const apellidoInput = document.getElementById('apellido').value;
+              //   const emailInput = document.getElementById('email').value;
+              //   const codulInput = document.getElementById('codul').value;
+              //   const favInput = document.getElementById('fav').value;
+              //   const doc = document.getElementById("doc").value;
+              //   const departamento = document.getElementById("departamento").value;
 
-            // Crear un objeto URL a partir de la URL actual
-            const urlObject = new URL(currentUrl);
+              //   const provincia = document.getElementById("provincia").value;
+              //   const distrito = document.getElementById("distrito").value;
+              //   const dni = document.getElementById("dni").value;
+              //   const codps = document.getElementById("codps").value;
+              //   const genero = document.getElementById("genero").value;
+              //   const domicilio = document.getElementById("domicilio").value;
+              //   const date = document.getElementById("date").value;
+              //   // const sl = document.getElementById("sl").value;
+              //   const lugarNacimiento = document.getElementById("lugarNacimiento").value;
 
-            // Obtener la parte del pathname que contiene el ID
-            const pathname = urlObject.pathname;
+              //   //
+              //   const departamentoTEXT = data[departamento]["DEPARTAMENTO"];
+              //   const provinciaTEXT = data[departamento]["PROVINCIAS"][provincia]["PROVINCIA"];
+              //   const distritoTEXT = data[departamento]["PROVINCIAS"][provincia]["DISTRITOS"][distrito];
 
-            // Extraer el ID de la parte del pathname
-            const id = pathname.split('/').pop();
+              //   //TRAER HORA
+              //   const fechaHora = new Date();
+              //   const hora = fechaHora.toLocaleTimeString('es-ES', { hour12: false });
 
-            console.log(id); // Imprimir el ID obtenido
-                const url = "https://serene-tundra-47257-a3e93549724c.herokuapp.com/api/zoho/update";
+              //   const requestBody = {
+              //     data: [
+              //       {
+              //         // ID de referencia
+              //         First_Name: nombreInput,
+              //         Last_Name: apellidoInput,
+              //         Email: emailInput,
+              //         UL_CODIGO: codulInput,
+              //         Nombre_favorito: favInput,
+              //         Tipo_documento: doc,
+              //         Department: departamentoTEXT,
+              //         Provincia: provinciaTEXT,
+              //         Distrito: distritoTEXT,
+              //         UL_DNI: dni,
+              //         UL_CO_ID_PS: codps,
+              //         G_nero: genero,
+              //         Domicilio: domicilio,
+              //         Date_of_Birth: date,
+              //         // Situaci_n_Laboral: sl,
+              //         Lugar_de_nacimiento: lugarNacimiento,
+              //         Ubigeo: distrito,
+              //         Fecha_hora: hora,
+              //       }
+              //     ]
+              //   };
 
-
-
-                // Obtener los valores de los campos del formulario
-                // const id = "3922751000446333398"; // ID de referencia
-                const nombreInput = document.getElementById('nombre').value;
-                const apellidoInput = document.getElementById('apellido').value;
-                const emailInput = document.getElementById('email').value;
-                const codulInput = document.getElementById('codul').value;
-                const favInput = document.getElementById('fav').value;
-                const doc = document.getElementById("doc").value;
-                const departamento = document.getElementById("departamento").value;
-
-                const provincia = document.getElementById("provincia").value;
-                const distrito = document.getElementById("distrito").value;
-                const dni = document.getElementById("dni").value;
-                const codps = document.getElementById("codps").value;
-                const genero = document.getElementById("genero").value;
-                const domicilio = document.getElementById("domicilio").value;
-                const date = document.getElementById("date").value;
-                const sl = document.getElementById("sl").value;
-                const lugarNacimiento = document.getElementById("lugarNacimiento").value;
-
-                //
-                const departamentoTEXT = data[departamento]["DEPARTAMENTO"];
-                const provinciaTEXT = data[departamento]["PROVINCIAS"][provincia]["PROVINCIA"];
-                const distritoTEXT = data[departamento]["PROVINCIAS"][provincia]["DISTRITOS"][distrito];
-
-                //TRAER HORA
-                const fechaHora = new Date();
-                const hora = fechaHora.toLocaleTimeString('es-ES', { hour12: false });
-
-                const requestBody = {
-                  data: [
-                    {
-                       // ID de referencia
-                      First_Name: nombreInput,
-                      Last_Name: apellidoInput,
-                      Email: emailInput,
-                      UL_CODIGO: codulInput,
-                      Nombre_favorito: favInput,
-                      Tipo_documento: doc,
-                      Department: departamentoTEXT,
-                      Provincia: provinciaTEXT,
-                      Distrito: distritoTEXT,
-                      UL_DNI: dni,
-                      UL_CO_ID_PS: codps,
-                      G_nero: genero,
-                      Domicilio: domicilio,
-                      Date_of_Birth: date,
-                      Situaci_n_Laboral: sl,
-                      Lugar_de_nacimiento: lugarNacimiento,
-                      Ubigeo: distrito,
-                      Fecha_hora: hora,
-                    }
-                  ]
-                };
-
-                fetch(url, {
-                  method: "PUT",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify(requestBody)
-                })
-                  .then(response => {
-                    if (!response.ok) {
-                      throw new Error("Error en la solicitud");
-                    }
-                    return response.json();
-                  })
-                  .then(data => {
-                    console.log(data);
-                    // Realizar cualquier operación adicional con la respuesta de la actualización
-                    location.reload(); // Recargar la página después de la actualización
-                  })
-                  .catch(error => {
-                    console.error(error);
-                  });
-              }
+              //   fetch(url, {
+              //     method: "PUT",
+              //     headers: {
+              //       "Content-Type": "application/json"
+              //     },
+              //     body: JSON.stringify(requestBody)
+              //   })
+              //     .then(response => {
+              //       if (!response.ok) {
+              //         throw new Error("Error en la solicitud");
+              //       }
+              //       return response.json();
+              //     })
+              //     .then(data => {
+              //       console.log(data);
+              //       // Realizar cualquier operación adicional con la respuesta de la actualización
+              //       location.reload(); // Recargar la página después de la actualización
+              //     })
+              //     .catch(error => {
+              //       console.error(error);
+              //     });
+              // }
             </script>
           </button>
           <script>
-            const currentUrl = window.location.href;
+            // Desactivar funciones de mostrar departamento, provincia y distrito
+            function desactivarMostrarDatos() {
+              departamentoSelect.removeEventListener('change', mostrarProvincias);
+              provinciaSelect.removeEventListener('change', mostrarDistritos);
+            }
 
-            // Crear un objeto URL a partir de la URL actual
-            const urlObject = new URL(currentUrl);
+            // Activar funciones de mostrar departamento, provincia y distrito
+            function activarMostrarDatos() {
+              departamentoSelect.addEventListener('change', mostrarProvincias);
+              provinciaSelect.addEventListener('change', mostrarDistritos);
+            }
 
-            // Obtener la parte del pathname que contiene el ID
-            const pathname = urlObject.pathname;
 
-            // Extraer el ID de la parte del pathname
-            const id = pathname.split('/').pop();
+            let entityId; // Variable para almacenar el entityId
 
-            console.log(id); // Imprimir el ID obtenido
-            
-           
-            let url = "https://serene-tundra-47257-a3e93549724c.herokuapp.com/api/zoho/test";
+            ZOHO.embeddedApp.on("PageLoad", function (data) {
+              // Obtener el ID del registro actual
+              entityId = data.EntityId[0];
+              console.log("ID del registro actual:", entityId);
 
-            fetch(url)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error("Error en la solicitud");
-                }
-                return response.json();
+              // Actualizar la URL con el ID obtenido
+              var urlParams = new URLSearchParams(window.location.search);
+              urlParams.set('id', entityId);
+              window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
+
+              // Asignar el ID a la entrada de texto
+              document.getElementById('idInput').value = entityId;
+
+              // Ejecutar la función para obtener los datos del registro actual
+              fetchDataWithQuery(entityId);
+            });
+
+            ZOHO.embeddedApp.init();
+
+            function UpdateRecord() {
+              console.log(entityId);
+              
+              // Obtener el ID almacenado en la variable global
+              if (!entityId) {
+                console.error("Error: No se ha obtenido el ID del registro actual.");
+                return;
+              }
+
+              // Utilizar el mismo ID para la URL del UPDATE
+              const url = `https://serene-tundra-47257-a3e93549724c.herokuapp.com/api/zoho/update?id=${entityId}`;
+
+              // Obtener los valores de los campos del formulario
+              const nombreInput = document.getElementById('nombre').value;
+              const emailInput = document.getElementById('email').value;
+              const apellidoInput = document.getElementById('apellido').value;
+              const codulInput = document.getElementById('codul').value;
+              const favInput = document.getElementById('fav').value;
+              const doc = document.getElementById("doc").value;
+              const departamento = document.getElementById("departamento").value;
+              const provincia = document.getElementById("provincia").value;
+              const distrito = document.getElementById("distrito").value;
+              const dni = document.getElementById("dni").value;
+              const codps = document.getElementById("codps").value;
+              const genero = document.getElementById("genero").value;
+              const domicilio = document.getElementById("domicilio").value;
+              const date = document.getElementById("date").value;
+              const lugarNacimiento = document.getElementById("lugarNacimiento").value;
+
+              // Resto del código para obtener los valores de los campos del formulario...
+
+              const departamentoTEXT = data[departamento]["DEPARTAMENTO"];
+              const provinciaTEXT = data[departamento]["PROVINCIAS"][provincia]["PROVINCIA"];
+              const distritoTEXT = data[departamento]["PROVINCIAS"][provincia]["DISTRITOS"][distrito];
+
+              //TRAER HORA
+              const fechaHora = new Date();
+              const hora = fechaHora.toLocaleTimeString('es-ES', { hour12: false });
+
+              const requestBody = {
+                data: [
+                  {
+                    // ID de referencia
+                    First_Name: nombreInput,
+                    Last_Name: apellidoInput,
+                    Email: emailInput,
+                    UL_CODIGO: codulInput,
+                    Nombre_favorito: favInput,
+                    Tipo_documento: doc,
+                    Department: departamentoTEXT,
+                    Provincia: provinciaTEXT,
+                    Distrito: distritoTEXT,
+                    UL_DNI: dni,
+                    UL_CO_ID_PS: codps,
+                    G_nero: genero,
+                    Domicilio: domicilio,
+                    Date_of_Birth: date,
+                    Lugar_de_nacimiento: lugarNacimiento,
+                    Ubigeo: distrito,
+                    Fecha_hora: hora,
+                  }
+                ]
+              };
+
+              fetch(url, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestBody)
               })
-              .then(data => {
-                console.log(data); // Verificar la estructura de los datos en la consola
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error("Error en la solicitud");
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  console.log(data);
+                  // Realizar cualquier operación adicional con la respuesta de la actualización
+                  location.reload(); // Recargar la página después de la actualización
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+            }
 
-                const nombreInput = document.getElementById('nombre');
-                const emailInput = document.getElementById('email');
-                const apellidoInput = document.getElementById('apellido');
-                const codulInput = document.getElementById('codul');
-                const favInput = document.getElementById('fav');
-                const doc = document.getElementById("doc")
-                const departamento = document.getElementById("departamento")
-                const provincia = document.getElementById("provincia")
-                const distrito = document.getElementById("distrito")
-                const dni = document.getElementById("dni")
-                const codps = document.getElementById("codps")
-                const genero = document.getElementById("genero")
-                const domicilio = document.getElementById("domicilio")
-                const date = document.getElementById("date")
-                const sl = document.getElementById("sl")
-                const lugarNacimiento = document.getElementById("lugarNacimiento")
+            function fetchDataWithQuery(entityId) {
+              // Utilizar la variable 'url' con el ID dinámico
+              let url = `https://serene-tundra-47257-a3e93549724c.herokuapp.com/api/zoho/test?id=${entityId}`;
 
-                const firstData = data.data[0]; // Obtener el primer elemento del arreglo
+              fetch(url)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error("Error en la solicitud");
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  const nombreInput = document.getElementById('nombre');
+                  const emailInput = document.getElementById('email');
+                  const apellidoInput = document.getElementById('apellido');
+                  const codulInput = document.getElementById('codul');
+                  const favInput = document.getElementById('fav');
+                  const doc = document.getElementById("doc");
+                  const departamento = document.getElementById("departamento");
+                  const provincia = document.getElementById("provincia");
+                  const distrito = document.getElementById("distrito");
+                  const dni = document.getElementById("dni");
+                  const codps = document.getElementById("codps");
+                  const genero = document.getElementById("genero");
+                  const domicilio = document.getElementById("domicilio");
+                  const date = document.getElementById("date");
+                  const lugarNacimiento = document.getElementById("lugarNacimiento");
+                  const dep = document.getElementById("dep");
+                  const prov = document.getElementById("prov");
+                  const dist = document.getElementById("dist");
 
-                nombreInput.value = firstData.First_Name || '';
-                emailInput.value = firstData.Email || '';
-                apellidoInput.value = firstData.Last_Name;
-                codulInput.value = firstData.UL_CODIGO || '';
-                favInput.value = firstData.Nombre_favorito || '';
-                doc.value = firstData.Tipo_documento || '';
-                // departamento.value = firstData.Department;
-                // provincia.value = firstData.Provincia;
-                // distrito.value = firstData.Distrito;
-                dni.value = firstData.UL_DNI || '';
-                codps.value = firstData.UL_CO_ID_PS;
-                genero.value = firstData.G_nero;
-                domicilio.value = firstData.Domicilio;
-                date.value = firstData.Date_of_Birth;
-                sl.value = firstData.Situaci_n_Laboral;
-                lugarNacimiento.value = firstData.Lugar_de_nacimiento;
+                  const firstData = data.data[0]; // Obtener el primer elemento del arreglo
 
-              })
-              .catch(error => console.log(error));
+                  // Asignar los valores recuperados a los campos del formulario
+                  nombreInput.value = firstData.First_Name || '';
+                  emailInput.value = firstData.Email || '';
+                  apellidoInput.value = firstData.Last_Name || '';
+                  codulInput.value = firstData.UL_CODIGO || '';
+                  favInput.value = firstData.Nombre_favorito || '';
+                  doc.value = firstData.Tipo_documento || '';
+                  dep.value = firstData.Department || '';
+                  prov.value = firstData.Provincia || '';
+                  dist.value = firstData.Distrito || '';
+                  dni.value = firstData.UL_DNI || '';
+                  codps.value = firstData.UL_CO_ID_PS || '';
+                  genero.value = firstData.G_nero || '';
+                  domicilio.value = firstData.Domicilio || '';
+                  date.value = firstData.Date_of_Birth || '';
+                  lugarNacimiento.value = firstData.Lugar_de_nacimiento || '';
+
+                  desactivarMostrarDatos();
+
+                  // Llamar a la función UpdateRecord con el entityId
+                })
+                .catch(error => console.log(error));
+            }
+            // Volver a activar funciones de mostrar departamento, provincia y distrito al realizar cambios
+            departamentoSelect.addEventListener('change', () => {
+              activarMostrarDatos();
+              mostrarProvincias();
+            });
+
+            provinciaSelect.addEventListener('change', () => {
+              activarMostrarDatos();
+              mostrarDistritos();
+            });
+
+            distritoSelect.addEventListener('change', () => {
+              activarMostrarDatos();
+            });
           </script>
 
         </div>
